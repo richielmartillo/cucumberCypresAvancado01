@@ -13,4 +13,4 @@ Então deve exibir a mensagem "Olá, Usuário Padrão!"
 Cenário: Login com senha inválida
 Dado que o usuário está na página de login
 Quando faço login com senha inválida
-Então o sistema deve exibir a mensagem "Usuário ou senha inválidos"
+Então o sistema deve exibir a mensagem "Email ou senha incorretos."

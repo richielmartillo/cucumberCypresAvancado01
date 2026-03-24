@@ -9,7 +9,7 @@ When(`faço login com credenciais válidas`, () => {
     cy.get('#email').type('usuario@teste.com')
     cy.get('#password').type('user123')
     cy.get('#login-btn').click()
-    cy.wait(3000)
+    cy.wait(1000)
     // cy.url().should('include', '/dashboard.html')
 });
 
@@ -20,9 +20,14 @@ Then(`deve exibir a mensagem {string}`, (mensagem) => {
 });
 
 When(`faço login com senha inválida`, () => {
-    // [When] Describes the action or event that triggers the scenario.
+    cy.get('#email').type('usuario@teste.com')
+    cy.get('#password').type('senhaErrada') // <- clave inválida
+    cy.get('#login-btn').click()
 });
 
 Then(`o sistema deve exibir a mensagem {string}`, (mensagem) => {
-    // [Then] Describes the expected outcome or result of the scenario.
+    cy.get('#alert-container')
+        .should('be.visible')
+        .and('have.class', 'alert-danger')
+        .and('contain.text', mensagem)
 });
