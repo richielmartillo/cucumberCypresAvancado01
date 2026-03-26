@@ -1,7 +1,7 @@
 #language: pt
 
 Funcionalidade: Login do usuário
-Como um usuário do sistema
+Como um usuário padrão
 Quero realizar login na plataforma
 Para acessar as funcionalidades da conta
 
