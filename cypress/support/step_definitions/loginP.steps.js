@@ -28,16 +28,22 @@ When('ele preencher o email {string} e a senha {string}', (email, senha) => {
 })
 
 Then('o sistema deve exibir a mensagem {string}', (mensagem) => {
-  if (mensagem === 'Olá, Usuário Padrão!') {
-    cy.url().should('include', '/dashboard.html')
-    cy.get('h4').should('contain', mensagem)
-  } else {
-    cy.get('#alert-container')
-      .should('be.visible')
-      .invoke('text')
-      .then((texto) => {
-        const textoNormalizado = texto.replace(/\s+/g, ' ').trim()
-        expect(textoNormalizado).to.include(mensagem)
-      })
-  }
+  cy.get('#alert-container')
+    .should('be.visible')
+    .invoke('text')
+    .then((texto) => {
+      const textoNormalizado = texto.replace(/\s+/g, ' ').trim()
+      expect(textoNormalizado).to.include(mensagem)
+    })
+})
+
+When('ele preencher o email inválido {string} e a senha {string}', (email, senha) => {
+  cy.get('#email').clear().type(email)
+  cy.get('#password').clear().type(senha)
+  cy.get('#login-btn').click()
+})
+
+Then('deve aparecer a mensagem de email inválido {string}', (mensagem) => {
+  cy.get('#email').should('have.class', 'is-invalid')
+  cy.contains('.invalid-feedback', mensagem).should('be.visible')
 })
