@@ -4,7 +4,8 @@
   "description": "Exemplo de modelo com cypress e cucumber",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run"
+    "test": "npx cypress run --browser chrome",
+    "cy:report":"npx cypress run --record --key 89b18653-a48e-480b-b3e2-13c15032256d"
   },
   "keywords": [],
   "author": "",
